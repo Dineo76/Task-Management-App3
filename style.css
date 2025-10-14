@@ -1,70 +1,35 @@
-body {
-    height: 100vh;
-    margin: 0;
-    display: flex;
-    justify-content: center;   /* centers horizontally */
-    align-items: center;       /* centers vertically */
-    background-image: url("https://i.pinimg.com/736x/11/0e/c8/110ec8e6695662b76f4d4b530036fcf5.jpg");
-    background-size: cover;
-    background-position: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  
-  * {
-    box-sizing: border-box; 
-  }
-  
-  /* Add padding to containers */
-  .container {
-    padding: 16px;
-  
-  }
-  
-  /* Full-width input fields */
-  input[type=text], input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-  }
-  
-  input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-  }
-  
-  /* Overwrite default styles of hr */
-  hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-  }
-  
-  /* Set a style for the submit button */
-  .registerbtn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.8;
-  }
-  
-  
-  
-  /* Add a blue text color to links */
-  a {
-    color: rgb(30, 64, 255);
-  }
-  
-  /* Set a grey background color and center the text of the "sign in" section */
-  .signin {
-    background-color: #f1f1f1;
+h2{
     text-align: center;
+}
+.logout-container{
+  width: 70px;
+  text-align: center;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background: rgba(130, 118, 176, 0.85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 2px solid #816d9b;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
   }
-  
-  
+
+.filters button {
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    width: 150px;
+
+  }
+
+
+  .filters button:first-child {
+    background-color: #4CAF50; 
+    color: white;
+  }
