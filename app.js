@@ -1,65 +1,82 @@
-let tasks = [];
-const titleInput = document.getElementById("myInput");
-const descInput = document.getElementById("myText");
-const taskList = document.getElementById("taskList");
-const addTaskBtn = document.getElementById("addTaskBtn");
 
-addTaskBtn.addEventListener("click", () => {
-  const title = titleInput.value.trim();
-  const description = descInput.value.trim();
-
-  if (title === "" || description === "") {
-    alert("Please fill in both title and description.");
-    return;
-  }
-
-  tasks.push({ title, description });
-
-  titleInput.value = "";
-  descInput.value = "";
-
-  renderTasks();
-});
-
-function renderTasks() {
-  taskList.innerHTML = "<h3>Task List</h3>";
-  if (tasks.length === 0) {
-    taskList.innerHTML += "<p>No tasks available.</p>";
-    return;
-  }
-
-  tasks.forEach((task, index) => {
-    taskList.innerHTML += `
-      <div class="task">
-        <strong>${index + 1}. ${task.title}</strong><br/>
-        <span>${task.description}</span>
-      </div>
-    `;
-  });
-}
-
-function handleLogout() {
-  window.location.href = "login.html";
-}
-
-const task = [
-    { id: 1, title: "Task 1", completed: false },
-    { id: 2, title: "Task 2", completed: true },
-    { id: 3, title: "Task 3", completed: false }
+let tasks = [
+    { id: 1, text: "Task 1", status: "pending" },
+    { id: 2, text: "Task 2", status: "completed" },
+    { id: 3, text: "Task 3", status: "pending" },
+    { id: 4, text: "Task 4", status: "completed" }
   ];
+  
+  
+  const taskContainer = document.createElement('div');
+  document.body.insertBefore(taskContainer, document.querySelector('.footer'));
+  
 
-  const pendingCountEl = document.getElementById("pending-count");
-
-
-  function filterTasks(filter) {
-    let filteredTasks = task;
-
-    if (filter === 'completed') {
-      filteredTasks = task.filter(task => task.completed);
-    }
- 
-    const pendingCount = tasks.filter(task => !task.completed).length;
-    pendingCountEl.textContent = pendingCount;
-
+  function renderTasks(filterStatus) {
+    taskContainer.innerHTML = ''; 
+  
+    const filteredTasks = tasks.filter(task => {
+      if (filterStatus === 'Delete') return false; 
+      return task.status === filterStatus || filterStatus === 'all';
+    });
+  
+    filteredTasks.forEach(task => {
+      const taskEl = document.createElement('div');
+      taskEl.textContent = task.text;
+      taskEl.style.marginBottom = '8px';
+  
+     
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = task.status === 'completed';
+      checkbox.onchange = () => toggleTaskStatus(task.id);
+      taskEl.prepend(checkbox);
+  
+     
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Delete';
+      deleteBtn.onclick = () => deleteTask(task.id);
+      deleteBtn.style.marginLeft = '10px';
+      taskEl.appendChild(deleteBtn);
+  
+      taskContainer.appendChild(taskEl);
+    });
+  
+    updatePendingCount();
   }
-    filterTasks('all');
+  
+
+  function toggleTaskStatus(taskId) {
+    const task = tasks.find(t => t.id === taskId);
+    if (task) {
+      task.status = task.status === 'completed' ? 'pending' : 'completed';
+      renderTasks('all'); 
+    }
+  }
+  
+ 
+  function deleteTask(taskId) {
+    tasks = tasks.filter(task => task.id !== taskId);
+    renderTasks('all');
+  }
+  
+
+  function updatePendingCount() {
+    const pendingCount = tasks.filter(task => task.status === 'pending').length;
+    document.getElementById('pending-count').textContent = pendingCount;
+  }
+  
+  
+  function filterTasks(filter) {
+    if (filter === 'Delete') {
+      
+      renderTasks('all');
+    } else if (filter === 'completed') {
+      renderTasks('completed');
+    }
+  }
+
+  
+  
+ 
+  renderTasks('all');
+  

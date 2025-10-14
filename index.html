@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Management App</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+ 
 
-    <div class="container">
-      <section>
-        <div class="task-input-section">
-          <h2>Add a New Task</h2>
-          <input type="text" id="myInput" placeholder="Title" />
-          <input type="text" id="myText" placeholder="Description" />
-          <button id="addTaskBtn">Add Task</button>
-        </div>
+    <div class="filters">
+      <button onclick="filterTasks('completed')">Completed</button>
+   
 
-        <div id="taskList"> </div>
-
-      </section>
     </div>
 
-    <div class="logout-container">
-      <button id="logout" onclick="handleLogout()">Logout</button>
-    </div>
 
-    <script src="app.js"></script>
-  </body>
+
+    <div class="footer">
+      <p style="color: rgb(10, 118, 118); font-size: larger;">Pending Tasks: <span id="pending-count">0</span></p>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+
+</body>
 </html>
