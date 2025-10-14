@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    
+ 
+
+    <div class="filters">
+      <button onclick="filterTasks('completed')">Completed</button>
+   
+
+    </div>
+
+
+
+    <div class="footer">
+      <p style="color: rgb(7, 89, 89); font-size: larger;">Pending Tasks: <span id="pending-count">0</span></p>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+
 </body>
 </html>
